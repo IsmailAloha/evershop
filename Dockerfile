@@ -13,5 +13,5 @@ RUN npm install
 RUN npm run build
 
 EXPOSE 80
-CMD ["sh", "./init-admin.sh"]
 CMD ["npm", "run", "start"]
+CMD ["sh", "./init-admin.sh"]
