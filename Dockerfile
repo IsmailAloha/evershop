@@ -1,17 +1,6 @@
-FROM node:18-alpine
-WORKDIR /app
-RUN npm install -g npm@9
-COPY package*.json .
-COPY packages ./packages
-COPY themes ./themes
-COPY extensions ./extensions
-COPY public ./public
-COPY media ./media
-COPY config ./config
-COPY translations ./translations
-RUN npm install
-RUN npm run build
+FROM evershop/evershop:latest
 
-EXPOSE 80
-CMD ["npm", "run", "start"]
-CMD ["sh", "./init-admin.sh"]
+COPY init-admin.sh /app/init-admin.sh
+
+# Optionally run the script during container startup
+ENTRYPOINT ["/bin/sh", "-c", "/app/init-admin.sh && npm start"]
